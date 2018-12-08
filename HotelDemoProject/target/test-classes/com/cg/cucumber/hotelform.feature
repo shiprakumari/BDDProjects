@@ -56,17 +56,6 @@ When user does not enter the expiry year
 Then pop up msg is displayed
 
 
-Scenario: booking confirmed with valid details
-When user enters the all valid data
-Then display the success message
-
-Scenario: booking failed as user entered invalid first name
-When user enters invalid first name
-Then display msg to valid first name
-
-Scenario: booking failed as user entered invalid last name
-When user enters invalid last name and cliks submit
-Then display msg to valid last name
 
 Scenario: booking failed as user enterd the invalid mobile number
 When user enters wrong pattern mobile number and click submit
@@ -85,38 +74,21 @@ When user enters wrong pattern email id and click submit
 |fgcf@ghgf@mjv|
 Then error message is displayed
 
-Scenario: booking failed as user entered invalid card holder name
-When user enters invalid card holder name
-Then display msg to valid card holder name
-
-Scenario: booking failed as user entered invalid CVV
-When user enters invalid CVV and submit 
-|dhg|
-|@%$#%^|
-|134535647|
-Then display msg to valid CVV
-
-Scenario: booking failed as user entered invalid expiration month
-When user enters invalid expiration month
-Then display msg to valid expiration month
-
-Scenario: booking failed as user entered invalid expiration month
-When user enters invalid expiration month
-Then display msg to valid expiration month
-
-Scenario: booking failed as user entered invalid expiration year
-When user enters invalid expiration year
-Then display message to valid expiration year
-
-Scenario Outline: assign the no of rooms to guest
-When user enters the <noOfGuests> 
-Then allocate the <rooms> to the user
+Scenario Outline: Validate the number of rooms alloted 
+When user enters <numberOfGuests>
+Then for <numberOfGuests> allocate <numberOfRooms>
 Examples:
-|noOfGuests| |rooms|
-|1| |1|
-|3| |1|
-|4| |2|
-|7| |3|
+|numberOfGuests|numberOfRooms|
+|1|1|
+|2|2|
+|1|3|
+|3|3|
+|1|2|
+|2|1|
+
+Scenario: booking confirmed with valid details
+When user enters the all valid data
+Then display the success message
 
 
 

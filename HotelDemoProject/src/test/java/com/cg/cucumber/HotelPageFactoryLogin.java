@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class HotelPageFactoryLogin {
 
@@ -19,9 +20,9 @@ public class HotelPageFactoryLogin {
 
 	}
 
-	@FindBy(xpath = "/html/body/div/h2")
+	/*@FindBy(xpath = "/html/body/div/h2")
 	@CacheLookup
-	WebElement acHeading;
+	WebElement acHeading;*/
 
 	@FindBy(id = "txtFirstName")
 	@CacheLookup
@@ -51,9 +52,9 @@ public class HotelPageFactoryLogin {
 	@CacheLookup
 	WebElement state;
 
-	@FindBy(xpath = "/select[@name='persons']")
+	@FindBy(xpath = "/html/body/div/div/form/table/tbody/tr[10]/td[2]/select")
 	@CacheLookup
-	WebElement noOfGuest;
+	int noOfGuest;
 
 	@FindBy(id = "rooms")
 	@CacheLookup
@@ -85,9 +86,9 @@ public class HotelPageFactoryLogin {
 
 	// setters
 
-	public void setAcHeading(WebElement acHeading) {
+	/*public void setAcHeading(WebElement acHeading) {
 		this.acHeading = acHeading;
-	}
+	}*/
 
 	public void setFname(String name) {
 		fname.sendKeys(name);
@@ -111,20 +112,17 @@ public class HotelPageFactoryLogin {
 	}
 
 	public void setCity(String cit) {
-		city.sendKeys(cit);
+		Select  cityData = new Select(city);
+		cityData.selectByValue(cit);
 	}
 
 	public void setState(String sta) {
-		state.sendKeys(sta);
+		Select  stateData = new Select(state);
+		stateData.selectByValue(sta);
 	}
 
-	public void setNoOfGuest(String guest) {
-		noOfGuest.sendKeys(guest);
-	}
-
-	public void setBookedRooms(String rooms) {
-		bookedRooms.sendKeys(rooms);
-		;
+	public void setNoOfGuest(int guest) {
+		noOfGuest = guest;
 	}
 
 	public void setHolderName(String holder) {
@@ -153,9 +151,9 @@ public class HotelPageFactoryLogin {
 
 	// getters
 
-	public WebElement getAcHeading() {
+	/*public WebElement getAcHeading() {
 		return acHeading;
-	}
+	}*/
 
 	public WebElement getFname() {
 		return fname;
@@ -185,7 +183,7 @@ public class HotelPageFactoryLogin {
 		return state;
 	}
 
-	public WebElement getNoOfGuest() {
+	public int getNoOfGuest() {
 		return noOfGuest;
 	}
 
